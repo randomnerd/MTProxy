@@ -11,8 +11,7 @@ Please, in case of any issues while build or etc, create an issue on original [r
 
 ## Testing servers
 
-Server #1. https://t.me/proxy?server=gorilla.proxy.plez.me&port=6968&secret=469fe09b277900a8ae91dcefa736056b
-
+Server #1. [https://t.me/proxy?server=gorilla.proxy.plez.me...](https://t.me/proxy?server=gorilla.proxy.plez.me&port=6968&secret=469fe09b277900a8ae91dcefa736056b) or [click this for iOS](tg://proxy?server=gorilla.proxy.plez.me&port=6968&secret=469fe09b277900a8ae91dcefa736056b)
 
 ## Building, installation and setting a promoted channel
 
