@@ -17,6 +17,10 @@ Server #1. [https://t.me/proxy?server=gorilla.proxy.plez.me...](https://t.me/pro
 
 @todo: Add the tutorial
 
+## Docker
+
+A tutorial for docker is available here https://p1ratrulezzz.me/2018/06/creating-your-own-official-mtproto-proxy-with-channel-promotion-very-easy-way.html and on the official repo https://hub.docker.com/r/telegrammessenger/proxy/
+
 Below goes original tutorial from developer.
 
 ## Building, installation
@@ -27,7 +31,7 @@ to run mtproto-proxy:
   1. Obtain a secret, used to connect to telegram servers. 
   curl -s https://core.telegram.org/getProxySecret -o proxy-secret
 
-  2. Obtail current telegram configuration. It can change (occasionally), so we encourage you to update it once per day.
+  2. Obtain current telegram configuration. It can change (occasionally), so we encourage you to update it once per day.
   curl -s https://core.telegram.org/getProxyConfig -o proxy-multi.conf
 
   3. Generate a secret to be used by users to connect to your proxy
