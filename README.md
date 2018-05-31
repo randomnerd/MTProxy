@@ -1,3 +1,26 @@
+# Telegram MTProto Proxy (Official version fork)
+
+## Credits
+
+Check the original repo https://github.com/TelegramMessenger/MTProxy and it is preferred to use it than this one as this repo won't be much maintained.
+But, of course, information from this fork can be useful too.
+
+## Disclaimer
+
+Please, in case of any issues while build or etc, create an issue on original [repo page](https://github.com/TelegramMessenger/MTProxy)! 
+
+## Testing servers
+
+Server #1. [https://t.me/proxy?server=gorilla.proxy.plez.me...](https://t.me/proxy?server=gorilla.proxy.plez.me&port=6968&secret=469fe09b277900a8ae91dcefa736056b) or click this for iOS tg://proxy?server=gorilla.proxy.plez.me&port=6968&secret=469fe09b277900a8ae91dcefa736056b
+
+## Building, installation and setting a promoted channel
+
+@todo: Add the tutorial
+
+Below goes original tutorial from developer.
+
+## Building, installation
+
 to build, simply run 'make'. Your binary will be objs/bin/mtproto-proxy
 
 to run mtproto-proxy:
