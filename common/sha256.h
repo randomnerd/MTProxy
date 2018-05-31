@@ -22,6 +22,11 @@
 
 #include <openssl/evp.h>
 
+#if OPENSSL_VERSION_NUMBER < 0x10100000
+#define EVP_MD_CTX_new EVP_MD_CTX_create
+#define EVP_MD_CTX_free EVP_MD_CTX_destroy
+#endif
+
 typedef EVP_MD_CTX sha256_context;
 
 void sha256_starts (sha256_context *ctx);

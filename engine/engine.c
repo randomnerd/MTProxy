@@ -229,7 +229,8 @@ void engine_init (const char *const pwd_filename, int do_not_open_port) {
     ipv4 = ntohl (E->settings_addr.s_addr);
     if ((ipv4 >> 24) != 10) {
       kprintf ("Bad binded IP address " IP_PRINT_STR ", search in ifconfig\n", IP_TO_PRINT (ipv4));
-      ipv4 = 0;
+      kprintf ("But we skip this warning. \n Refer to https://github.com/TelegramMessenger/MTProxy/issues/2");
+      //ipv4 = 0;
     }
   }
   init_server_PID (ipv4 ? ipv4 : get_my_ipv4 (), E->port);
