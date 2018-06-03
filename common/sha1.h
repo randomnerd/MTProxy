@@ -18,6 +18,12 @@
               2016 Nikolai Durov
 */
 #include <openssl/evp.h>
+#include <openssl/opensslv.h>
+
+#if OPENSSL_VERSION_NUMBER < 0x10100000
+#define EVP_MD_CTX_new EVP_MD_CTX_create
+#define EVP_MD_CTX_free EVP_MD_CTX_destroy
+#endif
 
 #if OPENSSL_VERSION_NUMBER < 0x10100000
 #define EVP_MD_CTX_new EVP_MD_CTX_create
