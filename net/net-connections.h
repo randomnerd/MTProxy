@@ -423,7 +423,7 @@ void tcp_set_max_connections (int maxconn);
  * @param ipv4 an integer ipv4 address (like ntohl() returns)
  * @return a positive value 1-3 defining which subnet is it or a zero
  *  The return values are:
- *   -2 - 0.0.0.0 - Listen on all interfaces
+ *   -2 - 0.0.0.0 - Current network
  *   -1 - An incorrect ipv4 address (out of range)
  *    0 - Any correct ipv4 address
  *    1 - 10.0.0.0 - 10.255.255.255
