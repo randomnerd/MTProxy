@@ -20,9 +20,8 @@ Server #1. [https://t.me/proxy?server=gorilla.proxy.plez.me...](https://t.me/pro
 A tutorial for docker is available here https://p1ratrulezzz.me/2018/06/creating-your-own-official-mtproto-proxy-with-channel-promotion-very-easy-way.html and on the official repo https://hub.docker.com/r/telegrammessenger/proxy/
 
 
-## Building, installation manually
+## Building and installation manually
 
-to build, simply run 'make'. Your binary will be objs/bin/mtproto-proxy
 
 ### Installing dependencies, cloning
 
