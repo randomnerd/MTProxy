@@ -15,43 +15,77 @@ Server #1. [https://t.me/proxy?server=gorilla.proxy.plez.me...](https://t.me/pro
 
 ## Building, installation and setting a promoted channel
 
-@todo: Add the tutorial
-
 ## Docker
 
 A tutorial for docker is available here https://p1ratrulezzz.me/2018/06/creating-your-own-official-mtproto-proxy-with-channel-promotion-very-easy-way.html and on the official repo https://hub.docker.com/r/telegrammessenger/proxy/
 
-Below goes original tutorial from developer.
 
-## Building, installation
+## Building, installation manually
 
 to build, simply run 'make'. Your binary will be objs/bin/mtproto-proxy
 
-to run mtproto-proxy:
-  1. Obtain a secret, used to connect to telegram servers. 
+### Installing dependencies, cloning
+
+```bash
+  apt-get install libssl-dev zlib1g-dev build-essential
+  cd /opt
+  git clone -b '0.0.2' https://github.com/p1ratrulezzz/MTProxy-1.git MTProxy
+```
+
+### Building
+
+```bash
+  cd /opt/MTProxy
+  make
   curl -s https://core.telegram.org/getProxySecret -o proxy-secret
-
-  2. Obtain current telegram configuration. It can change (occasionally), so we encourage you to update it once per day.
   curl -s https://core.telegram.org/getProxyConfig -o proxy-multi.conf
+  ln -s /opt/MTProxy/objs/bin/mtproto-proxy /usr/bin/mtproto-proxy
+  cp resources/init.d.script.sh /etc/init.d/mtproto-proxy1
+  chmod +x /etc/init.d/mtproto-proxy
+  cp resources/options.template.txt ./options.txt
+  systemctl daemon-reload
+```
 
-  3. Generate a secret to be used by users to connect to your proxy
-  head -c 16 /dev/urandom | xxd -ps
+### Configuration
 
-  4. Run mtproto-proxy
-        mtproto-proxy -u nobody -p 8888 -H 443 -S <secret> --aes-pwd proxy-secret proxy-multi.conf -M 1
-  where:
-          - nobody is the user name. mtproto-proxy calls setuid() to drop privilegies
-          - 443 is the port, used by clients to connect to the proxy
-          - 8888 is the local port. You can use it to get statistics from mtproto. Like wget localhost:8888/stats
-            You can only get this stat via loopback
-          - <secret> is the secret generated at step 3. 
-          - proxy-secret and proxy-multi.conf are obtained at steps 1 and 2
-          - 1 is the number of workers. You can increase the number of workers, if you have a powerful server
-          - also feel free to check out other options using mtproto-proxy help 
-             
+Edit options.txt file and set there desired values described below
 
-  5. generate the  link tg://proxy?server=SERVER_NAME&port=443&secret=SECRET
+```
+-P <proxy tag> -- (optional) Obtain a proxy tag from telegram bot @MTProxybot if you want to attach any channel as a "Proxy sponsor channel"
+-u nobody -- nobody is the user name. mtproto-proxy calls setuid() to drop privilegies
+-p 8888 -- is the local port. You can use it to get statistics from mtproto. Like wget localhost:8888/stats
+-H 6968 -- on which PORT to listen for connections
+-S <secret> -- secret, any 32byte string (md5hash). Generate it using ```head -c 16 /dev/urandom | xxd -ps```
+-S <secret2> -- another secret. Optionally, you can setup several passwords (secrets) per one server,
+-S <secret3> -- just pass as many -S flags as you want
+-M 0 -- quantity of workers (slave processes). Zero means only one process.
+--address <public_ip_here> -- set IP address got from ifconfig OR set to 0.0.0.0 which means to listen to all interfaces
+--cpu-threads 2 -- threads per process. The value 2 is recommended.
+--max-accept-rate 10 -- how many requests per second will be accepted. For powerful servers its possible to set 1000. For minimum users set to 10
+-C 60000 -- Max connections to serve. This value was taken from docker config.
+```
 
-  6.  register your proxy with @MTProxybot on Telegram.
+### Run the server for testing
 
-  7. enjoy
+```bash
+  mtproto-proxy $(cat options.txt)
+```
+
+If there are no errors and Telegram client can connect, close it using Ctrl+C then run as a daemon
+
+```bash
+  service mtproto-proxy start
+  service mtproto-proxy status
+```
+
+And there should be a process and Active daemon running. Check again if you can connect using Telegram client and enable the service to autorun on every reboot
+
+```bash
+  systemctl enable mtproto-proxy
+```
+
+That's it. Now you can close the SSH connection to your VPS and keep using Telegram with your new server! The statistics of usage of the server are accessible via Telegram bot @MTProxybot
+### Share with friends
+
+Generate the  link tg://proxy?server=SERVER_NAME&port=6968&secret=SECRET and https://t.me/proxy?server=SERVER_NAME&port=6968&secret=SECRET
+
