@@ -1,5 +1,7 @@
 # Telegram MTProto Proxy (Official version fork)
 
+[![Build Status](https://travis-ci.org/p1ratrulezzz/MTProxy-1.svg?branch=master)](https://travis-ci.org/p1ratrulezzz/MTProxy-1)
+
 ## Credits
 
 Check the original repo https://github.com/TelegramMessenger/MTProxy and it is preferred to use it than this one as this repo won't be much maintained.
