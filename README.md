@@ -30,7 +30,7 @@ A tutorial for docker is available here https://p1ratrulezzz.me/2018/06/creating
 ```bash
   apt-get install libssl-dev zlib1g-dev build-essential
   cd /opt
-  git clone -b '0.0.2' https://github.com/p1ratrulezzz/MTProxy-1.git MTProxy
+  git clone -b '0.0.3' https://github.com/p1ratrulezzz/MTProxy-1.git MTProxy
 ```
 
 ### Building
