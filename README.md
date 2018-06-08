@@ -11,6 +11,10 @@ But, of course, information from this fork can be useful too.
 
 Please, in case of any issues while build or etc, create an issue on original [repo page](https://github.com/TelegramMessenger/MTProxy)! 
 
+## Testing servers
+
+Server #1: https://t.me/proxy?server=svinka.stepashka.plez.me&port=6669&secret=93a5d6bb59e86713fef20e6e9fe2e9ff
+
 ## Building, installation and setting a promoted channel
 
 ## Docker
@@ -45,6 +49,12 @@ A tutorial for docker is available here https://p1ratrulezzz.me/2018/06/creating
 
 ### Configuration
 
+How to generate secrets?
+
+```bash
+  head -c 16 /dev/urandom | xxd -ps
+```
+
 Edit options.txt file and set there desired values described below
 
 ```
@@ -52,7 +62,7 @@ Edit options.txt file and set there desired values described below
 -u nobody -- nobody is the user name. mtproto-proxy calls setuid() to drop privilegies
 -p 8888 -- is the local port. You can use it to get statistics from mtproto. Like wget localhost:8888/stats
 -H 6968 -- on which PORT to listen for connections
--S <secret> -- secret, any 32byte string (md5hash). Generate it using ```head -c 16 /dev/urandom | xxd -ps```
+-S <secret> -- secret, any 32byte string (md5hash). Generate it using _head -c 16 /dev/urandom | xxd -ps_
 -S <secret2> -- another secret. Optionally, you can setup several passwords (secrets) per one server,
 -S <secret3> -- just pass as many -S flags as you want
 -M 0 -- quantity of workers (slave processes). Zero means only one process.
