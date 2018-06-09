@@ -13,7 +13,7 @@ Please, in case of any issues while build or etc, create an issue on original [r
 
 ## Testing servers
 
-Server #1: https://t.me/proxy?server=svinka.stepashka.plez.me&port=6669&secret=93a5d6bb59e86713fef20e6e9fe2e9ff
+Server #1: https://t.me/proxy?server=albert-einstein.servehttp.com&port=443&secret=469fe09b277900a8ae91dcefa736056b
 
 ## Building, installation and setting a promoted channel
 
