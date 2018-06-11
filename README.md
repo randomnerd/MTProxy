@@ -11,10 +11,6 @@ But, of course, information from this fork can be useful too.
 
 Please, in case of any issues while build or etc, create an issue on original [repo page](https://github.com/TelegramMessenger/MTProxy)! 
 
-## Testing servers
-
-Server #1: https://t.me/proxy?server=albert-einstein.servehttp.com&port=443&secret=469fe09b277900a8ae91dcefa736056b
-
 ## Building, installation and setting a promoted channel
 
 ## Docker
