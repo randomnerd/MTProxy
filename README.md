@@ -1,24 +1,34 @@
 # MTProxy
+Simple MT-Proto proxy
 
-# Building
+## Building
+Install dependencies, you would need common set of tools for building from source, and development packages for `openssl` and `zlib`.
 
-Install dependencies: you'd need normal set of tools for building from
-source, and a dev package for openssl.
-
-On Ubuntu/Debian:
+On Debian/Ubuntu:
 ```bash
-apt install build-essential libssl-dev
+apt install git curl build-essential libssl-dev zlib1g-dev
 ```
-
-On CentOS:
+On CentOS/RHEL:
 ```bash
-yum install openssl-devel
+yum install openssl-devel zlib-devel
 yum groupinstall "Development Tools"
 ```
 
-To build, simply run `make`. Your binary will be in `objs/bin/mtproto-proxy`. If build was failed, you would do `make clear` at first, before building it again.
+Clone the repo:
+```bash
+git clone https://github.com/TelegramMessenger/MTProxy
+cd MTProxy
+```
 
-# Running
+To build, simply run `make`, the binary will be in `objs/bin/mtproto-proxy`:
+
+```bash
+make && cd objs/bin
+```
+
+If the build has failed, you should run `make clean` before building it again.
+
+## Running
 1. Obtain a secret, used to connect to telegram servers.
 ```bash
 curl -s https://core.telegram.org/getProxySecret -o proxy-secret
@@ -42,17 +52,18 @@ head -c 16 /dev/urandom | xxd -ps
 - `<secret>` is the secret generated at step 3. Also you can set multiple secrets: `-S <secret1> -S <secret2>`.
 - `proxy-secret` and `proxy-multi.conf` are obtained at steps 1 and 2.
 - `1` is the number of workers. You can increase the number of workers, if you have a powerful server.
-- also feel free to check out other options using `mtproto-proxy --help`.
 
-5. Generate the link with followed schema: `tg://proxy?server=SERVER_NAME&port=443&secret=SECRET` (by the way official bot provides links anyway).
+Also feel free to check out other options using `mtproto-proxy --help`.
+
+5. Generate the link with following schema: `tg://proxy?server=SERVER_NAME&port=PORT&secret=SECRET` (or let the official bot generate it for you).
 6. Register your proxy with [@MTProxybot](https://t.me/MTProxybot) on Telegram.
-7. Set received tag as param `-P <proxy tag>`
+7. Set received tag with arguments: `-P <proxy tag>`
 8. Enjoy.
 
 ## Systemd example configuration
 1. Create systemd service file (it's standart path for the most Linux distros, but you should check it before):
 ```bash
-sudo nano /etc/systemd/system/MTProxy.service
+nano /etc/systemd/system/MTProxy.service
 ```
 2. Edit this basic service (especially paths and params):
 ```bash
@@ -62,8 +73,8 @@ After=network.target
 
 [Service]
 Type=simple
-WorkingDirectory=/opt/MTProxy/objs/bin
-ExecStart=/opt/MTProxy/objs/bin/mtproto-proxy -u nobody -p 8888 -H 443 -S <secret> -P <tag> [other params]
+WorkingDirectory=/opt/MTProxy
+ExecStart=/opt/MTProxy/mtproto-proxy -u nobody -p 8888 -H 443 -S <secret> -P <proxy tag> <other params>
 Restart=on-failure
 
 [Install]
@@ -71,17 +82,17 @@ WantedBy=multi-user.target
 ```
 3. Reload daemons:
 ```bash
-sudo systemctl daemon-reload
+systemctl daemon-reload
 ```
 4. Test fresh MTProxy service:
 ```bash
-sudo systemctl restart MTProxy.service
+systemctl restart MTProxy.service
 # Check status, it should be active
-sudo systemctl status MTProxy.service
+systemctl status MTProxy.service
 ```
 5. Enable it, to autostart service after reboot:
 ```bash
-sudo systemctl enable MTProxy.service
+systemctl enable MTProxy.service
 ```
 
 ## Docker image
