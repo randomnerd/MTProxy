@@ -26,8 +26,10 @@ A tutorial for docker is available here https://p1ratrulezzz.me/2018/06/creating
 ```bash
   apt-get install libssl-dev zlib1g-dev build-essential
   cd /opt
-  git clone -b '0.0.4' https://github.com/p1ratrulezzz/MTProxy-1.git MTProxy
+  git clone -b '0.0.3' https://github.com/p1ratrulezzz/MTProxy-1.git MTProxy
 ```
+
+Note: I recommend to use v0.0.3 because in v0.0.4 advertising doesn't work apparently...
 
 ### Building
 
