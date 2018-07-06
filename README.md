@@ -39,7 +39,7 @@ Note: I recommend to use v0.0.3 because in v0.0.4 advertising doesn't work appar
   curl -s https://core.telegram.org/getProxySecret -o proxy-secret
   curl -s https://core.telegram.org/getProxyConfig -o proxy-multi.conf
   ln -s /opt/MTProxy/objs/bin/mtproto-proxy /usr/bin/mtproto-proxy
-  cp resources/init.d.script.sh /etc/init.d/mtproto-proxy1
+  cp resources/init.d.script.sh /etc/init.d/mtproto-proxy
   chmod +x /etc/init.d/mtproto-proxy
   cp resources/options.template.txt ./options.txt
   systemctl daemon-reload
