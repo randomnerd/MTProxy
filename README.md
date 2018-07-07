@@ -59,7 +59,7 @@ Edit options.txt file and set there desired values described below
 -P <proxy tag> -- (optional) Obtain a proxy tag from telegram bot @MTProxybot if you want to attach any channel as a "Proxy sponsor channel"
 -u nobody -- nobody is the user name. mtproto-proxy calls setuid() to drop privilegies
 -p 8888 -- is the local port. You can use it to get statistics from mtproto. Like wget localhost:8888/stats
--H 6968 -- on which PORT to listen for connections
+-H 6968,6669 -- on which PORTS to listen for connections (You can set multiple ports using comma to split [see more](https://github.com/TelegramMessenger/MTProxy/issues/84#issuecomment-401022826))
 -S <secret> -- secret, any 32byte string (md5hash). Generate it using _head -c 16 /dev/urandom | xxd -ps_
 -S <secret2> -- another secret. Optionally, you can setup several passwords (secrets) per one server,
 -S <secret3> -- just pass as many -S flags as you want
