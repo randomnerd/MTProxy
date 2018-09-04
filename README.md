@@ -90,6 +90,15 @@ And there should be a process and Active daemon running. Check again if you can 
 ```
 
 That's it. Now you can close the SSH connection to your VPS and keep using Telegram with your new server! The statistics of usage of the server are accessible via Telegram bot @MTProxybot
+
+### Random padding to protect from banning
+
+Add 'dd' prefix to any secret key you share with public. For example, my original secret is SECRET, so in url you share add 'dd' to it:
+
+https://t.me/proxy...&secret=ddSECRET
+
+And the secret will be 2 more characters long (34 chars). Note that this is not supported in older client versions.
+
 ### Share with friends
 
 Generate the  link tg://proxy?server=SERVER_NAME&port=6968&secret=SECRET and https://t.me/proxy?server=SERVER_NAME&port=6968&secret=SECRET
