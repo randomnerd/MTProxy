@@ -1392,18 +1392,10 @@ int hts_stats_execute (connection_job_t c, struct raw_message *msg, int op) {
     D->query_flags &= ~QF_KEEPALIVE;
     return -501;
   }
-
-  if (D->uri_size != 6) {
-    return -404;
-  }
   
   char ReqHdr[MAX_HTTP_HEADER_SIZE];
   assert (rwm_fetch_data (msg, &ReqHdr, D->header_size) == D->header_size);
   
-  if (memcmp (ReqHdr + D->uri_offset, "/stats", 6)) {
-    return -404;
-  }
-
   stats_buffer_t sb;
   sb_alloc(&sb, 1 << 20);
   mtfront_prepare_stats(&sb);
