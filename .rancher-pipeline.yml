@@ -1,0 +1,22 @@
+stages:
+- name: build
+  steps:
+  - publishImageConfig:
+      dockerfilePath: ./Dockerfile
+      buildContext: .
+      tag: randomnerd/mtproxy
+      pushRemote: true
+      registry: index.docker.io
+- name: deploy
+  steps:
+  - applyYamlConfig:
+      path: ./deployment.yaml
+timeout: 60
+notification:
+  recipients:
+  - recipient: randomnerd@icloud.com
+    notifier: local:n-g6hnh
+  condition:
+  - Success
+  - Changed
+  - Failed
