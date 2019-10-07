@@ -26,10 +26,8 @@ A tutorial for docker is available here https://p1ratrulezzz.me/2018/06/creating
 ```bash
   apt-get install libssl-dev zlib1g-dev build-essential
   cd /opt
-  git clone -b '0.0.6' https://github.com/p1ratrulezzz/MTProxy-1.git MTProxy
+  git clone -b '0.0.7' https://github.com/p1ratrulezzz/MTProxy-1.git MTProxy
 ```
-
-Note: If you have problems with v0.0.6, use version 0.0.3 instead of 0.0.6/
 
 ### Building
 
@@ -98,6 +96,17 @@ Add 'dd' prefix to any secret key you share with public. For example, my origina
 https://t.me/proxy...&secret=ddSECRET
 
 And the secret will be 2 more characters long (34 chars). Note that this is not supported in older client versions.
+
+### TlS transport support (on client side)
+
+This enables the Telegram client traffic masking on client side by wrapping it into TLS traffic. The Telegram traffic will be nothing that a usual HTTPS traffic to your provider. It is recommended to set workers (-M 0) to zero to make it work better and to set port to 443 (-H 443)
+
+Add 'ee' prefix to any secret key you share with public. For example, my original secret is SECRET, so in url you share add 'dd' to it:
+
+https://t.me/proxy...&secret=eeSECRET
+
+And the secret will be 2 more characters long (34 chars). Note that this is not supported in older client versions.
+Telegram Desktop doesn't yet support this. 
 
 ### Share with friends
 
