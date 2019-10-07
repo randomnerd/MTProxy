@@ -97,7 +97,7 @@ https://t.me/proxy...&secret=ddSECRET
 
 And the secret will be 2 more characters long (34 chars). Note that this is not supported in older client versions.
 
-### TlS transport support (on client side)
+### TLS transport support (on client side)
 
 This enables the Telegram client traffic masking on client side by wrapping it into TLS traffic. The Telegram traffic will be nothing that a usual HTTPS traffic to your provider. It is recommended to set workers (-M 0) to zero to make it work better and to set port to 443 (-H 443)
 
