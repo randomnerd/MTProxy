@@ -97,11 +97,50 @@ https://t.me/proxy...&secret=ddSECRET
 
 And the secret will be 2 more characters long (34 chars). Note that this is not supported in older client versions.
 
-### TLS transport support (on client side)
+### FakeTLS transport support
 
-This enables the Telegram client traffic masking on client side by wrapping it into TLS traffic. The Telegram traffic will be nothing that a usual HTTPS traffic to your provider. It is recommended to set workers (-M 0) to zero to make it work better and to set port to 443 (-H 443)
+This enables the Telegram client traffic masking on client side by wrapping it into TLS traffic. The Telegram traffic will be nothing that a usual HTTPS traffic to your provider. It is recommended to set workers (-M 0) to zero to make it work better and to set port to 443 (-H 443).
 
-Add 'ee' prefix to any secret key you share with public. For example, my original secret is SECRET, so in url you share add 'dd' to it:
+As usual, create a 32 character secret
+
+```bash
+  export SECRET=$(head -c 16 /dev/urandom | xxd -ps)
+  echo $SECRET
+```
+You will see your secret as "abcd......efd"
+
+Now, choose a domain with TLS 1.3 support (it should have an HTTPS certificate and support TLS 1.3), or choose some public domain like yandex.ru
+
+Now, encode this domain using
+
+```bash
+export DOMAIN=$(echo yandex.ru | tr -d '\n' | xxd -ps -c 200)
+echo Use this secret in client: "ee${SECRET}${DOMAIN}"
+```
+
+And you will see:
+
+```
+Use this secret in client: "eeabcdef....efg"
+```
+
+And the secret will be quite long. 
+
+Now, form the url to use it for connecting to your server using this long secret:
+
+https://t.me/proxy...&secret=LONG_SECRET
+
+For making the generation easier use this JS tool: https://github.p1ratrulezzz.me/MTProxy-1/mtpgen.html (mirror) or http://seriyps.ru/mtpgen.html
+
+And run the MTProto proxy as following:
+
+```bash
+mtproto-proxy -S abcd......efd -H 443 -M 0 --domain yandex.ru 
+```
+
+Note: the --domain must be the same domain as you have encoded it above and included into your secret! Otherwise, it will not work.
+
+Enabling FakeTLS will block old users with old method of conneciton.
 
 https://t.me/proxy...&secret=eeSECRET
 
