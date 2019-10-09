@@ -142,11 +142,6 @@ Note: the --domain must be the same domain as you have encoded it above and incl
 
 Enabling FakeTLS will block old users with old method of conneciton.
 
-https://t.me/proxy...&secret=eeSECRET
-
-And the secret will be 2 more characters long (34 chars). Note that this is not supported in older client versions.
-Telegram Desktop doesn't yet support this. 
-
 ### Share with friends
 
 Generate the  link tg://proxy?server=SERVER_NAME&port=6968&secret=SECRET and https://t.me/proxy?server=SERVER_NAME&port=6968&secret=SECRET
